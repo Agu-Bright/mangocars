@@ -1,0 +1,78 @@
+/* Your app custom styles here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button {
+  @apply active:opacity-55 duration-75 transition-opacity;
+}
+.sender {
+  @apply bg-green-200 ml-auto rounded px-4 py-2 max-w-xs w-max;
+}
+.receiver {
+  @apply bg-zinc-200 rounded px-4 py-2 max-w-xs w-max;
+}
+img {
+  object-fit: cover;
+}
+/* .searchbar-input-wrap,
+.searchbar-input-wrap input {
+	border-radius: 40px;
+} */
+
+.sign_up_pop {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 10px;
+}
+
+.cool_height {
+  height: 17%;
+}
+
+.cool_item_height {
+  height: 80%;
+  padding: 0px 5px;
+  border: 1px solid black;
+}
+
+#partitioned {
+  width: 100%;
+  padding-left: 15px;
+  letter-spacing: 42px;
+  border: 0;
+  background-image: linear-gradient(
+    to left,
+    black 70%,
+    rgba(255, 255, 255, 0) 0%
+  );
+  background-position: bottom;
+  background-size: 50px 1px;
+  background-repeat: repeat-x;
+  background-position-x: 35px;
+  width: 300px;
+  min-width: 220px;
+}
+
+#divInner {
+  left: 0;
+  position: sticky;
+}
+
+#divOuter {
+  width: 100%;
+  overflow: hidden;
+}
+
+.inbox_search_container {
+  width: 100%;
+  height: 40px;
+  border: "1px solid black";
+}
+#inbox_search {
+  border: "1px solid black";
+  width: 100%;
+  height: 40px;
+}

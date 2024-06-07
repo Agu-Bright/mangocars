@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--
+  Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+      https://cordova.apache.org/docs/en/latest/
+  Some notes:
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+      * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: content:"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+
+    <meta name="theme-color" content="#fff" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>Mango Cars</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link rel="apple-touch-icon" href="" />
+
+    <!-- built styles file will be auto injected -->
+
+    <!-- <link rel="icon" type="image/svg+xml" href="./assets/img (1).jpeg" /> -->
+    <!-- SEO Meta Tags -->
+    <meta name="description" content=" Buy and sell vehicles" />
+    <meta name="author" content="Team 7" />
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+    <meta property="og:site_name" content="Mango Cars" />
+    <!-- website name -->
+    <meta property="og:site" content="mango-cars-app.netlify.app" />
+    <!-- website link -->
+    <meta property="og:title" content="Mango Cars App" />
+    <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="Buy and sell vehicles" />
+    <!-- description shown in the actual shared post -->
+    <meta property="og:locale" content="en_US" />
+    <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="index.html" />
+    <!-- where do you want your post to link to -->
+    <meta property="og:image" content="https://mango-cars-app.netlify.app/" />
+  </head>
+  <style>
+    * {
+      scroll-behavior: smooth;
+    }
+    *::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    * {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  </style>
+  <body>
+    <div id="app"></div>
+
+    <!-- <script src="https://js.paystack.co/v1/inline.js"></script> -->
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

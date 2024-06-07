@@ -1,0 +1,26 @@
+{
+  "cwd": "C:\\Users\\chukw\\OneDrive\\Desktop\\work\\FW7\\twappp",
+  "type": [
+    "web",
+    "capacitor"
+  ],
+  "name": "twapp",
+  "pkg": "com.team7.twapp",
+  "framework": "react",
+  "template": "blank",
+  "cssPreProcessor": false,
+  "bundler": "vite",
+  "capacitor": {
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
