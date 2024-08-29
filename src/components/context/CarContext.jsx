@@ -2,9 +2,11 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { URL } from "../../data";
 export const CarContext = createContext();
+import { App } from "@capacitor/app"; // Import the App plugin
 
 const CarContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
+  const [authenticating, setAuthenticating] = useState(false);
   const [topDeals, setTopDeals] = useState(null);
   const [auth, setAuth] = useState(null);
   const [loadingUser, setLoadingUser] = useState(false);
@@ -23,8 +25,6 @@ const CarContextProvider = ({ children }) => {
   const [car, setCarUpdate] = useState({});
   const [update, setUpdate] = useState({});
   const [imageUpdate, setImageUpdate] = useState([]);
-
-  order && console.log(order);
 
   const getAllCars = async ({
     searchQuery,
@@ -71,6 +71,23 @@ const CarContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    App.addListener("appUrlOpen", (event) => {
+      // Example: yourapp://auth?token=abc123
+      const url = event.url;
+      const token = new URL(url).searchParams.get("token");
+
+      if (token) {
+        // Handle the token, for example, authenticate the user
+        console.log("Token from deep link:", token);
+      }
+    });
+
+    return () => {
+      App.removeAllListeners();
+    };
+  }, []);
+
+  useEffect(() => {
     (async () => {
       await getAllCars({
         searchQuery: "",
@@ -92,7 +109,6 @@ const CarContextProvider = ({ children }) => {
           },
         });
         setAuth(data?.user);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -154,6 +170,8 @@ const CarContextProvider = ({ children }) => {
         setUpdate,
         setImageUpdate,
         imageUpdate,
+        authenticating,
+        setAuthenticating,
       }}
     >
       {children}

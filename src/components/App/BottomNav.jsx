@@ -24,27 +24,26 @@ const BottomNav = ({ f7router }) => {
         // style={{ position: "relative" }}
         className={`fixed bottom-0 left-0 w-full z-[5000] text-zinc-500 transition-all`}
       >
-        {(auth?.role === "seller" || auth?.role === "admin") && (
-          <div
-            onClick={() => f7router.navigate("/post")}
-            style={{
-              width: "50px",
-              height: "50px",
-              border: "0.1px solid gray",
-              background: "green",
-              marginLeft: "20px",
-              marginBottom: "15px",
-              borderRadius: "20px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <AddIcon
-              sx={{ color: "white", fontWeight: "800", fontSize: "2em" }}
-            />
-          </div>
-        )}
+        <div
+          onClick={() => f7router.navigate("/post")}
+          style={{
+            width: "50px",
+            height: "50px",
+            border: "0.1px solid gray",
+            background: "green",
+            marginLeft: "20px",
+            marginBottom: "15px",
+            borderRadius: "20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <AddIcon
+            sx={{ color: "white", fontWeight: "800", fontSize: "2em" }}
+          />
+        </div>
+
         <nav
           // onTouchStart={(e) => handleTouchStart(e, "nav")}
           // onTouchEnd={handleTouchEnd}

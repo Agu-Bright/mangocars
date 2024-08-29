@@ -3,29 +3,31 @@ import axios from "axios";
 import { auth, provider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
 import { URL } from "../../data";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CarContext } from "../context/CarContext";
 import { toast } from "react-toastify";
 import { Bounce } from "react-toastify"; // Import the Bounce transition if it's provided by your toast library
 import "react-toastify/dist/ReactToastify.css";
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+
 const GoogleSignIn = ({ type, handleOpen }) => {
   //   const [values, setValues] = useState();
-  const { setAuth } = useContext(CarContext);
+  const { setAuth, setAuthenticating } = useContext(CarContext);
 
   const handleGoogleSignIn = async () => {
     if (type === "signup") {
       try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        console.log("Google sign-in successful:", user);
+        const response = await GoogleAuth.signIn();
         // Handle user authentication or redirect to the next stepu
+        console.log(response);
         try {
+          setAuthenticating(true);
           const { data } = await axios.post(
             `${URL}/register`,
             {
-              fullName: user?.displayName,
-              password: user?.uid,
-              email: user?.email,
+              fullName: response?.name,
+              password: response?.id,
+              email: response?.email,
             },
             {
               withCredentials: true,
@@ -35,6 +37,7 @@ const GoogleSignIn = ({ type, handleOpen }) => {
             }
           );
           setAuth(data?.user);
+          setAuthenticating(false);
           handleOpen();
         } catch (error) {
           console.log(error);
@@ -49,23 +52,22 @@ const GoogleSignIn = ({ type, handleOpen }) => {
             theme: "light",
             transition: Bounce,
           });
+          setAuthenticating(false);
         }
       } catch (error) {
         console.error("Google sign-in error:", error);
       }
     } else {
       try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        console.log("Google sign-in successful:", user);
-
+        const response = await GoogleAuth.signIn();
         // Handle user authentication or redirect to the next stepu
         try {
+          setAuthenticating(true);
           const { data } = await axios.post(
             `${URL}/login`,
             {
-              password: user?.uid,
-              email: user?.email,
+              password: response?.id,
+              email: response?.email,
             },
             {
               withCredentials: true,
@@ -75,6 +77,7 @@ const GoogleSignIn = ({ type, handleOpen }) => {
             }
           );
           setAuth(data?.user);
+          setAuthenticating(false);
           handleOpen();
         } catch (error) {
           console.log(error);
@@ -91,6 +94,7 @@ const GoogleSignIn = ({ type, handleOpen }) => {
               theme: "light",
               transition: Bounce,
             });
+            setAuthenticating(false);
           }
         }
       } catch (error) {
