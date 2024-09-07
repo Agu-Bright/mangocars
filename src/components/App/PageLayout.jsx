@@ -74,7 +74,7 @@ const PageLayout = ({ f7router, title, children, type }) => {
         </h2>
       </nav>
       {children}
-      {/* <ToastContainer /> */}
+       <ToastContainer /> 
     </Page>
   );
 };

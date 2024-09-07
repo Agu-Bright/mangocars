@@ -59,4 +59,4 @@ export const comments = [
   },
 ];
 export const banners = [banner1, banner2, banner3, banner4, banner5, banner6];
-export const URL = "https://mango-cars-server-1.onrender.com/api/v1";
+export const URL = "http://localhost:4000/api/v1";

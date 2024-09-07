@@ -133,16 +133,17 @@ const Car = ({ f7route, f7router }) => {
         }
       })();
   }, [car]);
-
+  const [adding, setAdding] = useState(false);
   const handleAddToCart = async (id) => {
     try {
+      setAdding(true);
       const { data } = await axios.get(`${URL}/add-cart/${id}`, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log(data);
+      setAdding(false);
       toast.success("Cart Item Added", {
         position: "top-center",
         autoClose: 5000,
@@ -156,8 +157,8 @@ const Car = ({ f7route, f7router }) => {
       });
       // f7router.navigate("/orders");
     } catch (error) {
-      console.log(error);
-      toast.error(error.response?.data?.message, {
+      setAdding(false);
+      toast.error(error?.response?.data?.message, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,
@@ -340,7 +341,11 @@ const Car = ({ f7route, f7router }) => {
                 onClick={() => handleAddToCart(car?._id)}
                 className="py-2 bg-primary text-white text-lg font-semibold rounded"
               >
-                Click to Order
+                {adding ? (
+                  <CircularProgress size={15} sx={{ color: "white" }} />
+                ) : (
+                  "Click to Order"
+                )}
               </button>
             </div>
           </section>
@@ -426,7 +431,7 @@ const Car = ({ f7route, f7router }) => {
           </div>
         </>
       )}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </PageLayout>
   );
 };
